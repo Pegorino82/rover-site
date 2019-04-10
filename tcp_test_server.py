@@ -12,7 +12,7 @@ def run_server(host, port):
     while True:
         try:
             client, addr = sock.accept()
-            print(f'{addr} connected')
+            print('connected', addr)
 
             try:
                 json_data = client.recv(1024)
