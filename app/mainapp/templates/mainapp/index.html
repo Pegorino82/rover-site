@@ -3,32 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Rover</title>
+    <link href="{{ url_for('static', filename='style/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style/style.css') }}" rel="stylesheet">
 </head>
 <body>
-<span>Hello!</span>
+<div class="card form-actions" style="width: 18rem;">
+<span>Здесь можно вводить значания для передачи команд</span>
 
-<form method="post" enctype=multipart/form-data id="meetup-reg-form">
+<form class="form-group" method="post" enctype=multipart/form-data id="meetup-reg-form">
     {% if form %} {{ form.hidden_tag() }} {% endif %}
 
-    <input name="left" type="text">
-    <input name="right" type="text">
-    <input name="up" type="text">
-    <input name="down" type="text">
-    <button type="submit">send</button>
+    <div class="form-group">
+        <input class="form-control" id="form-left" name="left" type="text">
+        <label for="form-left">left</label>
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="form-right" name="right" type="text">
+        <label for="form-right">right</label>
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="form-up" name="up" type="text">
+        <label for="form-up">up</label>
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="form-down" name="down" type="text">
+        <label for="form-down">down</label>
+    </div>
+    <button class="btn btn-outline-primary" type="submit">send</button>
 
 </form>
-
-<div id="controls">
-    <div id="left">left</div>
-    <div id="right">right</div>
-    <div id="up">up</div>
-    <div id="down">down</div>
 </div>
 
+<div class="card ajax-actions" style="width: 18rem;">
+<span>Здесь отправляются команды left/right/up/down</span>
+<div id="controls">
+    <button class="btn btn-outline-primary" id="left">left</button>
+    <button class="btn btn-outline-primary" id="right">right</button>
+    <button class="btn btn-outline-primary" id="up">up</button>
+    <button class="btn btn-outline-primary" id="down">down</button>
+</div>
+</div>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-<script>
 
+<script>
     let elem = document.querySelector('#controls');
     elem.addEventListener('click', (event) => {
         console.log(event.target);

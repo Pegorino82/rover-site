@@ -5,4 +5,4 @@ from mainapp.blueprint import main
 app.register_blueprint(main, url_prefix='/')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=80)
